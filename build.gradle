@@ -24,6 +24,7 @@ repositories {
 
 
 dependencies {
+	compile group: 'org.apache.camel', name: 'camel-telegram-starter', version: '2.20.0'
 	compile('org.springframework.boot:spring-boot-starter-aop')
 	compile('org.apache.camel:camel-spring-boot-starter:2.19.3')
 	compile('org.springframework.boot:spring-boot-starter-security')
