@@ -9,11 +9,14 @@ import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import it.umberto.palo.apache.jms.processor.ConsumerToQueue;
+import it.umberto.palo.apache.jms.processor.SenderToQueue;
+
 @Component
 public class MainRouter extends RouteBuilder{
 
 	@Autowired
-    private ProducerTemplate producerTemplate;
+	protected ProducerTemplate producerTemplate;
 	
 	@Override
     public void configure() throws Exception {
@@ -21,29 +24,13 @@ public class MainRouter extends RouteBuilder{
 
         //Producer route
         from("timer://test?period=5000")
-        .process(new Processor() {
-        @Override
-         public void process(Exchange exchange) throws Exception {
-            String message = UUID.randomUUID().toString();
-            log.info("**********************************");
-            log.info("Send message '{}' to queue....", message);
-            producerTemplate.sendBody("activemq://queuetest", message);
-         }
-         });
+        .bean(SenderToQueue.class);
 
         //==========================================================================//
 
         //Consumer queue
-        from("activemq://queuetest")
-        .process(new Processor() {
-        @Override
-        public void process(Exchange exchange) throws Exception {
-
-           String message = exchange.getIn().getBody(String.class);
-           log.info("--------------------------------");
-           log.info("Receive message '{}' from queue.", message);
-         }
-        });
+        from("activemq://queuetestp")
+        .bean(ConsumerToQueue.class);
 
     }
 }

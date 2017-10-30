@@ -9,7 +9,13 @@ buildscript {
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
+	//UMBERTO: per risolvere il : Class path contains multiple SLF4J bindings facendo vincere quello incluso in logback per ora 
+	configurations {
+ 	    all*.exclude group:"org.apache.logging.log4j", module: "log4j-slf4j-impl"
+	}
 }
+
+
 
 
 
@@ -63,10 +69,18 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-activemq")
     compile("org.apache.activemq:activemq-broker")
 	compile group: 'org.apache.camel', name: 'camel-telegram-starter', version: '2.20.0'
-	compile('org.springframework.boot:spring-boot-starter-aop')
+	
 	compile('org.apache.camel:camel-spring-boot-starter:2.20.0')
 	compile group: 'org.apache.camel', name: 'camel-jms', version: '2.20.0'
 	compile group: 'org.apache.camel', name: 'camel-ftp', version: '2.20.0'
+	compile('org.springframework.boot:spring-boot-starter-aop')
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-solr'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-social-facebook'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-social-linkedin'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-social-twitter'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-log4j2'
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
 	testCompile('org.springframework.boot:spring-boot-starter-test')

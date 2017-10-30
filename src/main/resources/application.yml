@@ -1,5 +1,5 @@
 server:
-     port: 8161
+     port: 8888
 
 activemq:
      url: tcp://localhost:61616
