@@ -1,6 +1,7 @@
 buildscript {
 	ext {
 		springBootVersion = '1.5.8.RELEASE'
+		camelVersion = '2.20.0'
 	}
 	repositories {
 		mavenCentral()
@@ -9,6 +10,8 @@ buildscript {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
 }
+
+
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -34,12 +37,38 @@ repositories {
 	mavenCentral()
 }
 
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        if (details.requested.name == 'log4j') {
+            details.useTarget "org.slf4j:log4j-over-slf4j:1.7.25"
+        }
+    }
+}
+
 
 dependencies {
+	//compile ('org.apache.activemq:activemq-all:5.15.2')
+	//{
+		//exclude group: "org.slf4j", module: "log4j-over-slf4j"
+		//excluding a particular transitive dependency:
+
+		//exclude module: 'cglib' //by artifact name
+
+		//exclude group: 'org.slf4j' //by group
+
+		//exclude group: 'org.unwanted', module: 'iAmBuggy' //by both name and group
+
+	//}
+	compile group: 'org.apache.activemq', name: 'activemq-camel', version: '5.15.2'
+	compile("org.springframework.boot:spring-boot-starter-activemq")
+    compile("org.apache.activemq:activemq-broker")
 	compile group: 'org.apache.camel', name: 'camel-telegram-starter', version: '2.20.0'
 	compile('org.springframework.boot:spring-boot-starter-aop')
-	compile('org.apache.camel:camel-spring-boot-starter:2.19.3')
+	compile('org.apache.camel:camel-spring-boot-starter:2.20.0')
+	compile group: 'org.apache.camel', name: 'camel-jms', version: '2.20.0'
+	compile group: 'org.apache.camel', name: 'camel-ftp', version: '2.20.0'
 	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
 }

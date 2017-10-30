@@ -17,7 +17,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableAutoConfiguration
 @SpringBootApplication
 //Umberto: è un array di String dove si specificano i package dei @Component e relativi Bean che si ignettano con @Autowired
-@ComponentScan(basePackages= {"it.umberto.palo.camel.route","it.umberto.palo.bot"})
+@ComponentScan(basePackages= {"it.umberto.palo.bot.camel.route","it.umberto.palo.bot"})
 public class TelegramBotApplication {
 
     public static void main(String[] args) throws Exception {

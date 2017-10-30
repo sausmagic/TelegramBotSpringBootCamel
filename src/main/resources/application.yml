@@ -1,0 +1,7 @@
+server:
+     port: 8161
+
+activemq:
+     url: tcp://localhost:61616
+     user: admin
+     password: admin
