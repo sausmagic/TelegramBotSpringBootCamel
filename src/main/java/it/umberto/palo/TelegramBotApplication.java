@@ -1,4 +1,4 @@
-package it.umberto.palo.springboot.starterApp;
+package it.umberto.palo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -17,7 +17,23 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableAutoConfiguration
 @SpringBootApplication
 //Umberto: è un array di String dove si specificano i package dei @Component e relativi Bean che si ignettano con @Autowired
-@ComponentScan(basePackages= {"it.umberto.palo.camel.route","it.umberto.palo.bot"})
+@ComponentScan(basePackages= {"it.umberto.palo.bot.camel.route","it.umberto.palo.bot"})
+
+/**
+ * portato il component Scan nel ROOT package come da manuale SpringBoot
+ * 
+ *  vedi manuale versione Spring boot 1.5.8-RELEASE
+ *  capitolo 14 (Structuring your code)
+ *  
+ *  Questo permette di avere allo scan la visibilità di tutti i @component, @Service, @Autowired, @Bean......
+ *  
+ *  
+ *  NOTA BENE: 
+ *  ho definito i package per il semplice fatto che esistono due applicazioni separate
+ *  
+ * @author u.palo
+ *
+ */
 public class TelegramBotApplication {
 
     public static void main(String[] args) throws Exception {

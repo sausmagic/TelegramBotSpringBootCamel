@@ -1,4 +1,4 @@
-package it.umberto.palo.camel.route;
+package it.umberto.palo.bot.camel.route;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
