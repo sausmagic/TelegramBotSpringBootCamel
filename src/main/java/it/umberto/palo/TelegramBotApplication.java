@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * This is a standard spring-boot main class.
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
  * 
  * Per permettere a Spring boot di eseguire le configurazioni automatiche per eseguire il contesto in un jar
  * */
+@Configuration
 @EnableAutoConfiguration
 @SpringBootApplication
 //Umberto: è un array di String dove si specificano i package dei @Component e relativi Bean che si ignettano con @Autowired

@@ -2,12 +2,17 @@
 server:
      port: 8888
 
-#definisce la configurazione custom verso una coda di messaggi ActiveMQ esterna da quella Embedded
+#definisce la configurazione custom verso una coda di messaggi ActiveMQ esterna da quella Embedded 
+#MongoDB custom config
 #spring:
 #  activemq:
 #    broker-url: tcp://localhost:61616
 #    user: admin
 #    password: admin
+#  data:
+#    mongodb:
+#      database: sausmagic
+#      port: 27017
 
 #Serve a configurare Spring security. Configura l'utente e la password per accedere alla root di tomcat
 security:

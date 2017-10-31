@@ -91,6 +91,9 @@ dependencies {
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-log4j2'
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+	compile('org.springframework.boot:spring-boot-starter-data-rest')
+	compile group: 'org.springframework', name: 'spring-context-support'
+	//compile group: 'de.flapdoodle.embed', name: 'de.flapdoodle.embed.mongo', version: '2.0.0'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
 }
