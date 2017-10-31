@@ -15,10 +15,6 @@ buildscript {
 	}
 }
 
-
-
-
-
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
@@ -53,6 +49,12 @@ configurations.all {
 
 
 dependencies {
+	compile("org.springframework.boot:spring-boot-starter-actuator")
+	//Umberto: da disabilitare in produzione.....
+	// utility di Spring. Vedi capitolo 20 (Developer tools) manuale spring boot
+	//molto utile per anche per il Remote vedi 20.5(Remote applications)
+	compile("org.springframework.boot:spring-boot-devtools")
+	
 	//compile ('org.apache.activemq:activemq-all:5.15.2')
 	//{
 		//exclude group: "org.slf4j", module: "log4j-over-slf4j"
@@ -69,7 +71,6 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-activemq")
     compile("org.apache.activemq:activemq-broker")
 	compile group: 'org.apache.camel', name: 'camel-telegram-starter', version: '2.20.0'
-	
 	compile('org.apache.camel:camel-spring-boot-starter:2.20.0')
 	compile group: 'org.apache.camel', name: 'camel-jms', version: '2.20.0'
 	compile group: 'org.apache.camel', name: 'camel-ftp', version: '2.20.0'
@@ -87,6 +88,7 @@ dependencies {
 	testCompile('org.springframework.security:spring-security-test')
 }
 
+//Umberto: questa parte serve per mettere una dipendenza (jar) su Nexus o simile
 /**uploadArchives {
     repositories {
         mavenDeployer {

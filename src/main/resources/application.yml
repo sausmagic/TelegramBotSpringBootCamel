@@ -1,7 +1,10 @@
+#definisce la porta custom per tomcat rispetto a quella definita di default su quello embedded
 server:
      port: 8888
 
-activemq:
-     url: tcp://localhost:61616
-     user: admin
-     password: admin
+#definisce la configurazione custom verso una coda di messaggi ActiveMQ esterna da quella Embedded
+#spring:
+#  activemq:
+#    broker-url: tcp://localhost:61616
+#    user: admin
+#    password: admin
