@@ -8,3 +8,9 @@ server:
 #    broker-url: tcp://localhost:61616
 #    user: admin
 #    password: admin
+
+#Serve a configurare Spring security. Configura l'utente e la password per accedere alla root di tomcat
+security:
+  user:
+    name: sausmagic
+    password: sausmagic

@@ -67,15 +67,22 @@ dependencies {
 		//exclude group: 'org.unwanted', module: 'iAmBuggy' //by both name and group
 
 	//}
+	//ACTIVEMQ
 	compile group: 'org.apache.activemq', name: 'activemq-camel', version: '5.15.2'
 	compile("org.springframework.boot:spring-boot-starter-activemq")
-    compile("org.apache.activemq:activemq-broker")
-	compile group: 'org.apache.camel', name: 'camel-telegram-starter', version: '2.20.0'
-	compile('org.apache.camel:camel-spring-boot-starter:2.20.0')
 	compile group: 'org.apache.camel', name: 'camel-jms', version: '2.20.0'
 	compile group: 'org.apache.camel', name: 'camel-ftp', version: '2.20.0'
+    compile("org.apache.activemq:activemq-broker")
+    //TELEGRAM
+	compile group: 'org.apache.camel', name: 'camel-telegram-starter', version: '2.20.0'
+	//CAMEL
+	compile('org.apache.camel:camel-spring-boot-starter:2.20.0')
+	//SPRING-AOP
 	compile('org.springframework.boot:spring-boot-starter-aop')
+	//SOLR
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-solr'
+	compile group: 'org.apache.solr', name: 'solr-core', version: '7.1.0'
+	//VARIOUS SPING STARTER
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail'
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-social-facebook'
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-social-linkedin'
