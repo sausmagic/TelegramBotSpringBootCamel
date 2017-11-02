@@ -15,6 +15,6 @@ import it.umberto.palo.datamongodb.model.Customer;
  *
  */
 @RepositoryRestResource(collectionResourceRel = "customer", path = "customer")
-public interface CustomerMongoRepository extends MongoRepository<Customer, String> {
+public interface ICustomerMongoRepository extends MongoRepository<Customer, String> {
 	List<Customer> findByName(String name);
 }

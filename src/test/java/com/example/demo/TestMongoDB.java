@@ -24,7 +24,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import it.umberto.palo.datamongodb.configuration.AppConfig;
 import it.umberto.palo.datamongodb.model.Customer;
-import it.umberto.palo.datamongodb.repository.CustomerMongoRepository;
+import it.umberto.palo.datamongodb.repository.ICustomerMongoRepository;
 import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 //@RunWith(SpringJUnit4ClassRunner.class)
@@ -40,7 +40,7 @@ import static org.junit.Assert.*;
 public class TestMongoDB {
 
 	@Autowired
-	CustomerMongoRepository customerRepo;
+	ICustomerMongoRepository customerRepo;
 	
 	@Test
 	public void exampleTest() {
