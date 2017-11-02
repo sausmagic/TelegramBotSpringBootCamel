@@ -29,7 +29,7 @@ public class CustomerController {
 	
 	 @ResponseBody
 	    @ResponseStatus(value = HttpStatus.CREATED)
-	    @RequestMapping(method = RequestMethod.POST, path = "/addMember", produces = {
+	    @RequestMapping(method = RequestMethod.POST, path = "/addCustomer", produces = {
 	        MediaType.APPLICATION_JSON_VALUE
 	    }, consumes = {
 	        MediaType.APPLICATION_JSON_VALUE

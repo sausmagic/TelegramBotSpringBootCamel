@@ -12,7 +12,7 @@ import it.umberto.palo.bot.Bot;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 //Umberto: è un array di String dove si specificano i package dei @Component e relativi Bean che si ignettano con @Autowired
-@ComponentScan(basePackages= {"it.umberto.palo.bot.camel.route","it.umberto.palo.bot"})
+//@ComponentScan(basePackages= {"it.umberto.palo.bot.camel.route","it.umberto.palo.bot"})
 public class TelegramBotApplication {
 	
 	@Autowired

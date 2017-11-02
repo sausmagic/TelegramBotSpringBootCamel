@@ -11,6 +11,7 @@ server:
 #    password: admin
 #  data:
 #    mongodb:
+#      uri:mongodb://username:password@host:port
 #      database: sausmagic
 #      port: 27017
 

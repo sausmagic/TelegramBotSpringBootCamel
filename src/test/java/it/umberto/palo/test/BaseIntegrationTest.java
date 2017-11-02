@@ -23,7 +23,9 @@ import de.flapdoodle.embed.mongo.config.IMongodConfig;
 import de.flapdoodle.embed.mongo.config.MongodConfigBuilder;
 import de.flapdoodle.embed.mongo.config.Net;
 import de.flapdoodle.embed.mongo.distribution.Version;
+import it.umberto.palo.configuration.SecurityJavaConfig;
 import it.umberto.palo.datamongodb.model.Customer;
+import it.umberto.palo.datamongodb.repository.IAccountRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -36,6 +38,8 @@ public abstract class BaseIntegrationTest {
     private static MongodExecutable mongodExecutable;
     @Autowired
     protected MongoTemplate mongoTemplate;
+    @Autowired
+    IAccountRepository accountRepository;
     @Before
     public void setUp() {
         mapper = new ObjectMapper();
