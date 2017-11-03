@@ -4,16 +4,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurerSupport;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-//@SpringBootApplication
-//@EnableScheduling
-//@EnableAsync
-//@EnableAutoConfiguration
-//@ComponentScan(basePackages= {"it.umberto.palo.apache.jms.route","it.umberto.palo.apache.jms"})
+@SpringBootApplication(scanBasePackageClasses = {JMSMainApplication.class})
+@EnableScheduling
+@EnableAsync
+@EnableAutoConfiguration
+@ComponentScan(basePackages= {"it.umberto.palo.apache.jms.route","it.umberto.palo.apache.jms"})
 /**
  * portato il component Scan nel ROOT package come da manuale SpringBoot
  * 

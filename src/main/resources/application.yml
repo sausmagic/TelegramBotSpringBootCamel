@@ -1,6 +1,6 @@
 #definisce la porta custom per tomcat rispetto a quella definita di default su quello embedded
 server:
-     port: 8888
+     port: 8889
 
 #definisce la configurazione custom verso una coda di messaggi ActiveMQ esterna da quella Embedded 
 #MongoDB custom config

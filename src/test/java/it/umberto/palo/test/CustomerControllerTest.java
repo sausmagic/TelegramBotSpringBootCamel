@@ -1,31 +1,101 @@
 package it.umberto.palo.test;
 
-import static org.junit.Assert.*;
-
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.UnknownHostException;
 
 import org.hamcrest.beans.SamePropertyValuesAs;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.http.HttpHeaders;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpSession;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.util.Base64Utils;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import de.flapdoodle.embed.mongo.MongodExecutable;
+import de.flapdoodle.embed.mongo.MongodStarter;
+import de.flapdoodle.embed.mongo.config.IMongodConfig;
+import de.flapdoodle.embed.mongo.config.MongodConfigBuilder;
+import de.flapdoodle.embed.mongo.config.Net;
+import de.flapdoodle.embed.mongo.distribution.Version;
 import it.umberto.palo.DTO.CustomerDTO;
+import it.umberto.palo.datamongodb.model.Customer;
+import it.umberto.palo.datamongodb.repository.IAccountRepository;
 
-public class CustomerControllerTest extends BaseIntegrationTest{
+//@EnableAutoConfiguration
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes= {CustomerControllerTest.class})
+@AutoConfigureMockMvc
+//@AutoConfigureDataMongo
+//@ComponentScan(excludeFilters=@ComponentScan.Filter(type=FilterType.REGEX, pattern= {"it.umberto.palo"}))
+@ComponentScan(basePackages = {"it.umberto.palo.datamongodb"})
+public class CustomerControllerTest {
 
+	@Autowired
+    protected MockMvc mockMvc;
+    protected ObjectMapper mapper;
+    private static MongodExecutable mongodExecutable;
+    
+    @Autowired
+    protected MongoTemplate mongoTemplate;
+    
+    @Autowired
+    IAccountRepository accountRepository;
+    
+    @Before
+    public void setUp() {
+        mapper = new ObjectMapper();
+    }
+    @After
+    public void after() {
+        mongoTemplate.dropCollection(Customer.class);
+    }
+    
+    /**
+     * Here we are setting up an embedded mongodb instance to run with our
+     * integration tests.
+     * 
+     * @throws UnknownHostException
+     * @throws IOException
+     */
+    @BeforeClass
+    public static void beforeClass() throws UnknownHostException, IOException {
+        MongodStarter starter = MongodStarter.getDefaultInstance();
+        IMongodConfig mongoConfig = new MongodConfigBuilder().version(Version.Main.PRODUCTION)
+            .net(new Net(27017, false)).build();
+        mongodExecutable = starter.prepare(mongoConfig);
+        try {
+            mongodExecutable.start();
+        } catch (Exception e) {
+            closeMongoExecutable();
+        }
+    }
+    @AfterClass
+    public static void afterClass() {
+        closeMongoExecutable();
+    }
+    
+    private static void closeMongoExecutable() {
+        if (mongodExecutable != null) {
+            mongodExecutable.stop();
+        }
+    }
 //	public static class MockSecurityContext implements SecurityContext {
 //
 //        private static final long serialVersionUID = -1386535243513362694L;

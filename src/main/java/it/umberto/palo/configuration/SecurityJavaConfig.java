@@ -18,11 +18,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import it.umberto.palo.datamongodb.model.Account;
 import it.umberto.palo.datamongodb.repository.IAccountRepository;
 
-@Configuration
-@EnableWebSecurity
-@ComponentScan("it.umberto.palo")
+//@Configuration
+//@EnableWebSecurity
 public class SecurityJavaConfig extends GlobalAuthenticationConfigurerAdapter {
-@Autowired
+//@Autowired
 IAccountRepository accountRepository;
 
 /**
@@ -37,7 +36,7 @@ public void init(AuthenticationManagerBuilder auth) throws Exception {
  * Umberto: classe interna che implementa un service per recuperare gli utenti dal database mongodb e importarli nel contesto di spring security
  * @return
  */
-@Bean
+//@Bean
 UserDetailsService userDetailsService() {
   return new UserDetailsService() {
 
@@ -57,8 +56,8 @@ UserDetailsService userDetailsService() {
 }
 }
 
-@EnableWebSecurity
-@Configuration
+//@EnableWebSecurity
+//@Configuration
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 @Override

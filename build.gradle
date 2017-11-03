@@ -82,6 +82,13 @@ dependencies {
 	//SOLR
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-solr'
 	compile group: 'org.apache.solr', name: 'solr-core', version: '7.1.0'
+	//OAUTH per autenticazione spesso usata nei social
+	// for OAuth 2.0
+    compile 'org.springframework.security.oauth:spring-security-oauth2:2.2.0.RELEASE'
+    // for OAuth 1.0a
+    compile 'org.springframework.security.oauth:spring-security-oauth:2.2.0.RELEASE'
+    //Spring Social
+    compile 'org.springframework.social:spring-social-core:1.1.4.RELEASE'
 	//VARIOUS SPING STARTER
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail'
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-social-facebook'
